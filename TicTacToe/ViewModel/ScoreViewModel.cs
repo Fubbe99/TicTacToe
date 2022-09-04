@@ -10,34 +10,36 @@ using TicTacToe.Model;
 
 namespace TicTacToe.ViewModel
 {
-    internal partial class ScoreViewModel : ObservableObject
+    [ObservableObject]
+    public partial class ScoreViewModel
     {
-        public ScoreViewModel()
+        public ScoreViewModel(Player player1, Player player2)
         {
+            Player1 = player1;
+            Player2 = player2;
+
             WeakReferenceMessenger.Default.Register<ScoreUpdateMessage>(this, (r, m) =>
                 {
                     AddScore(m.Value);
                 });
 
         }
-        [ObservableProperty]
-        private int player1Score;
-
-        [ObservableProperty]
-        private int player2Score;
+        public Player Player1 { get; set; }
+        public Player Player2 { get; set; }
 
         [ObservableProperty]
         private int drawScore;
+
 
         private void AddScore(Player player)
         {
             switch (player.Id)
             {
                 case 1:
-                    player1Score++;
+                    Player1.Score++;
                     break;
                 case 2:
-                    player2Score++;
+                    Player2.Score++;
                     break;
                 case 0:
                     drawScore++;

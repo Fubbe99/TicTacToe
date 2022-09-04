@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TicTacToe.Model
 {
-    internal partial class Player : ObservableObject
+    public partial class Player : ObservableObject
     {
         [ObservableProperty]
         private int id = 0;
@@ -15,16 +15,13 @@ namespace TicTacToe.Model
         [ObservableProperty]
         private string name = string.Empty;
 
+        [ObservableProperty]
+        private int score = 0;
+
         public Player(int playerId, string playerName)
         {
-           
-            Score = new();
-
             id = playerId;
             name = playerName;
         }
-
-   
-        public Score Score { get; set; }
     }
 }

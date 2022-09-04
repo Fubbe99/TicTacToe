@@ -5,14 +5,29 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>Common\Assets\Icon.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Common\Assets\Grid.png" />
+    <None Remove="Common\Assets\Icon.ico" />
+    <None Remove="Common\Assets\O15.png" />
+    <None Remove="Common\Assets\X15.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Common\Assets\Icon.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Common\Assets\" />
+    <Resource Include="Common\Assets\Grid.png" />
+    <Resource Include="Common\Assets\Icon.ico" />
+    <Resource Include="Common\Assets\O15.png" />
+    <Resource Include="Common\Assets\X15.png" />
   </ItemGroup>
 
 </Project>

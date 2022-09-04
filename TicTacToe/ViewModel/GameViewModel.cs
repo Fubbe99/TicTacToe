@@ -7,11 +7,12 @@ using TicTacToe.Model;
 
 namespace TicTacToe.ViewModel
 {
-    internal class GameViewModel
+    public class GameViewModel
     {
-        public GameViewModel()
+        public GameViewModel(Player player1, Player player2)
         {
-
+            Player1 = player1;
+            Player2 = player2;
         }
         public ScoreViewModel ScoreVM { get; set; }
         public Player Player1 { get; set; }
@@ -19,11 +20,7 @@ namespace TicTacToe.ViewModel
 
         public void StartNewGame()
         {
-            Player1 = new(1, "Player 1");//todo make names user settable
-            Player2 = new(2, "Player 2");
-            ScoreVM = new();
-
-
+            ScoreVM = new(Player1, Player2);
         }
     }
 }
