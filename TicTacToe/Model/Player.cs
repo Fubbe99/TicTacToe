@@ -19,10 +19,14 @@ namespace TicTacToe.Model
         [ObservableProperty]
         private int score = 0;
 
-        public Player(int playerId, string playerName)
+        [ObservableProperty]
+        private string icon;
+
+        public Player(int playerId, string playerName, string iconName = "")
         {
             id = playerId;
             name = playerName;
+            icon = iconName;
         }
     }
 }

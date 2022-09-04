@@ -17,7 +17,10 @@ namespace TicTacToe.ViewModel
         public ScoreViewModel(Player player1, Player player2)
         {
             Player1 = player1;
-            Player2 = player2;            
+            Player2 = player2;
+
+            Messenger.Register<ScoreUpdateMessage>(this);
+
         }
 
         public Player Player1 { get; set; }
@@ -42,7 +45,7 @@ namespace TicTacToe.ViewModel
                     Player2.Score++;
                     break;
                 case 0:
-                    drawScore++;
+                    DrawScore++;
                     break;
                 default:
                     break;

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:view="clr-namespace:TicTacToe.View"
              xmlns:viewModel="clr-namespace:TicTacToe.ViewModel"
-             StartupUri="View.MainWindow.xaml">
+             StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <DataTemplate DataType="{x:Type viewModel:GameViewModel}">

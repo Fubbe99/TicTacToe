@@ -8,7 +8,7 @@ using TicTacToe.Model;
 
 namespace TicTacToe.Common.Messages
 {
-    public class ScoreUpdateMessage
+    public sealed record ScoreUpdateMessage
     {
         public Player Player { get; set; }
     }
