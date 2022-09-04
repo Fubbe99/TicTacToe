@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using System;
 using System.Collections.Generic;
@@ -10,27 +11,26 @@ using TicTacToe.Model;
 
 namespace TicTacToe.ViewModel
 {
-    [ObservableObject]
-    public partial class ScoreViewModel
+    public partial class ScoreViewModel : ObservableRecipient, IRecipient<ScoreUpdateMessage>
     {
+   
         public ScoreViewModel(Player player1, Player player2)
         {
             Player1 = player1;
-            Player2 = player2;
-
-            WeakReferenceMessenger.Default.Register<ScoreUpdateMessage>(this, (r, m) =>
-                {
-                    AddScore(m.Value);
-                });
-
+            Player2 = player2;            
         }
+
         public Player Player1 { get; set; }
         public Player Player2 { get; set; }
 
         [ObservableProperty]
         private int drawScore;
 
+        public void Receive(ScoreUpdateMessage message)
+        {
+            AddScore(message.Player);
 
+        }
         private void AddScore(Player player)
         {
             switch (player.Id)

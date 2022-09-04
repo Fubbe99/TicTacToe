@@ -8,11 +8,8 @@ using TicTacToe.Model;
 
 namespace TicTacToe.Common.Messages
 {
-    internal class ScoreUpdateMessage : ValueChangedMessage<Player>
+    public class ScoreUpdateMessage
     {
-        public ScoreUpdateMessage(Player player) : base(player)
-        {
-
-        }
+        public Player Player { get; set; }
     }
 }

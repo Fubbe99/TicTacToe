@@ -7,9 +7,9 @@ using TicTacToe.Model;
 
 namespace TicTacToe.ViewModel
 {
-    internal class MainViewModel
+    public partial class MainWindowViewModel
     {
-        public MainViewModel()
+        public MainWindowViewModel()
         {
             Player1 = new(1, "Player 1");//todo make names user settable
             Player2 = new(2, "Player 2");

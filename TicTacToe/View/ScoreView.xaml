@@ -3,14 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:TicTacToe.ViewModel" 
+             xmlns:viewModel="clr-namespace:TicTacToe.ViewModel"
+             d:DataContext="{d:DesignInstance Type=viewModel:ScoreViewModel}"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             Width="Auto"
+             Height="Auto">
 
-    <UserControl.DataContext>
-        <local:ScoreViewModel/>
-    </UserControl.DataContext>
-    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
