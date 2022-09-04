@@ -22,7 +22,7 @@ namespace TicTacToe.ViewModel
             currentPlayer = Player1;
 
             InitializeSquares();
-            playEnabled = true;
+            PlayEnabled = true;
         }
        
         public ScoreViewModel ScoreVM { get; set; }
@@ -91,6 +91,7 @@ namespace TicTacToe.ViewModel
 
             CheckIfGameHasEnded();
 
+            //Change player
             CurrentPlayer = CurrentPlayer == Player1 ? Player2 : Player1;
         }
 
@@ -102,7 +103,9 @@ namespace TicTacToe.ViewModel
                 return;
             }
 
+            //Todo How to check this in a more clever way? 
 
+            //Horisontally
             if (square1.IdPlaced != 0 && square1.IdPlaced == square2.IdPlaced && square1.IdPlaced == square3.IdPlaced)
             {
                 GameEnded(currentPlayer);
@@ -118,6 +121,25 @@ namespace TicTacToe.ViewModel
                 GameEnded(currentPlayer);
                 return;
             }
+
+            //Vertically
+            if (square1.IdPlaced != 0 && square1.IdPlaced == square4.IdPlaced && square1.IdPlaced == square7.IdPlaced)
+            {
+                GameEnded(currentPlayer);
+                return;
+            }
+            if (square2.IdPlaced != 0 && square2.IdPlaced == square5.IdPlaced && square2.IdPlaced == square8.IdPlaced)
+            {
+                GameEnded(currentPlayer);
+                return;
+            }
+            if (square3.IdPlaced != 0 && square3.IdPlaced == square6.IdPlaced && square3.IdPlaced == square9.IdPlaced)
+            {
+                GameEnded(currentPlayer);
+                return;
+            }
+
+            //Diagonally
             if (square1.IdPlaced != 0 && square1.IdPlaced == square5.IdPlaced && square1.IdPlaced == square9.IdPlaced)
             {
                 GameEnded(currentPlayer);
@@ -135,7 +157,6 @@ namespace TicTacToe.ViewModel
             Messenger.Send(new ScoreUpdateMessage { Player = playerWhoWon });
 
             PlayEnabled = false;
-
         }
     }
 }
