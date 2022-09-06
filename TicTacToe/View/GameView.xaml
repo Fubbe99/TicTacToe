@@ -5,10 +5,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:viewModel="clr-namespace:TicTacToe.ViewModel"
              xmlns:local="clr-namespace:TicTacToe.View"
+             xmlns:converters="clr-namespace:TicTacToe.Common.Converters"
              d:DataContext="{d:DesignInstance Type=viewModel:GameViewModel}"
-             mc:Ignorable="d" 
-             >
+             mc:Ignorable="d" >
 
+
+    <UserControl.Resources>
+        <converters:NullToImageConverter x:Key="nullToImage"/>
+    </UserControl.Resources>
+    
     <GroupBox Width="500"
               Height="500"
               Header="Game"
@@ -42,7 +47,7 @@
                 Command="{Binding MakeMoveCommand}"
                 CommandParameter = "{Binding Square1}">
                 <Button.Content>
-                    <Image Source="{Binding Square1.Icon}" />
+                    <Image Source="{Binding Square1.Icon, Converter={StaticResource nullToImage}}" />
                 </Button.Content>
             </Button>
             <Button
@@ -53,7 +58,7 @@
                 Command="{Binding MakeMoveCommand}"
                 CommandParameter = "{Binding Square2}">
                 <Button.Content>
-                    <Image Source="{Binding Square2.Icon}" />
+                    <Image Source="{Binding Square2.Icon, Converter={StaticResource nullToImage}}" />
                 </Button.Content>
             </Button>
             <Button
@@ -64,7 +69,7 @@
                 Command="{Binding MakeMoveCommand}"
                 CommandParameter = "{Binding Square3}">
                 <Button.Content>
-                    <Image Source="{Binding Square3.Icon}" />
+                    <Image Source="{Binding Square3.Icon, Converter={StaticResource nullToImage}}" />
                 </Button.Content>
             </Button>
             <Button
@@ -75,7 +80,7 @@
                 Command="{Binding MakeMoveCommand}"
                CommandParameter = "{Binding Square4}">
                 <Button.Content>
-                    <Image Source="{Binding Square4.Icon}" />
+                    <Image Source="{Binding Square4.Icon, Converter={StaticResource nullToImage}}" />
                 </Button.Content>
             </Button>
             <Button
@@ -86,7 +91,7 @@
                 Command="{Binding MakeMoveCommand}"
                CommandParameter = "{Binding Square5}">
                 <Button.Content>
-                    <Image Source="{Binding Square5.Icon}" />
+                    <Image Source="{Binding Square5.Icon, Converter={StaticResource nullToImage}}" />
                 </Button.Content>
             </Button>
             <Button
@@ -97,7 +102,7 @@
                 Command="{Binding MakeMoveCommand}"
                CommandParameter = "{Binding Square6}">
                 <Button.Content>
-                    <Image Source="{Binding Square6.Icon}" />
+                    <Image Source="{Binding Square6.Icon, Converter={StaticResource nullToImage}}" />
                 </Button.Content>
             </Button>
             <Button
@@ -108,7 +113,7 @@
                 Command="{Binding MakeMoveCommand}"
                CommandParameter = "{Binding Square7}">
                 <Button.Content>
-                    <Image Source="{Binding Square7.Icon}" />
+                    <Image Source="{Binding Square7.Icon, Converter={StaticResource nullToImage}}" />
                 </Button.Content>
             </Button>
             <Button
@@ -119,7 +124,7 @@
                 Command="{Binding MakeMoveCommand}"
                 CommandParameter = "{Binding Square8}">
                 <Button.Content>
-                    <Image Source="{Binding Square8.Icon}" />
+                    <Image Source="{Binding Square8.Icon, Converter={StaticResource nullToImage}}" />
                 </Button.Content>
             </Button>
             <Button
@@ -130,7 +135,7 @@
                 Command="{Binding MakeMoveCommand}"
              CommandParameter = "{Binding Square9}">
                 <Button.Content>
-                    <Image Source="{Binding Square9.Icon}" />
+                    <Image Source="{Binding Square9.Icon, Converter={StaticResource nullToImage}}" />
                 </Button.Content>
             </Button>
 

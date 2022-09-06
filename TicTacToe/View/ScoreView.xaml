@@ -6,7 +6,6 @@
              xmlns:viewModel="clr-namespace:TicTacToe.ViewModel"
              d:DataContext="{d:DesignInstance Type=viewModel:ScoreViewModel}"
              mc:Ignorable="d">
-    <ViewBox>
         <GroupBox
         Header="Score"
         Height="100">
@@ -58,5 +57,4 @@
             Margin="10"/>
             </Grid>
         </GroupBox>
-    </ViewBox>
 </UserControl>

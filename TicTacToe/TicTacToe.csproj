@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net7.0-windows</TargetFramework>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>Common\Assets\Icon.ico</ApplicationIcon>
@@ -14,7 +14,7 @@
 		<!-- Work around https://github.com/dotnet/wpf/issues/6792 -->
 
 		<ItemGroup>
-			<FilteredAnalyzer Include="@(Analyzer->Distinct())" />
+			<FilteredAnalyzer Include="@(Analyzer-&gt;Distinct())" />
 			<Analyzer Remove="@(Analyzer)" />
 			<Analyzer Include="@(FilteredAnalyzer)" />
 		</ItemGroup>

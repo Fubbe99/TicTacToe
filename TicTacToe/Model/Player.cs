@@ -20,13 +20,13 @@ namespace TicTacToe.Model
         private int score = 0;
 
         [ObservableProperty]
-        private string icon;
+        private string? icon;
 
-        public Player(int playerId, string playerName, string iconName = "")
+        public Player(int playerId, string playerName, string? iconName = null)
         {
-            id = playerId;
-            name = playerName;
-            icon = iconName;
+            Id = playerId;
+            Name = playerName;
+            Icon = iconName;
         }
     }
 }

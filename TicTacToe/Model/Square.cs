@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace TicTacToe.Model
 {
@@ -17,7 +18,7 @@ namespace TicTacToe.Model
         private int idPlaced = 0;
 
         [ObservableProperty]
-        private string icon = "";
+        private string? icon;
 
         public Square(int squareNumber)
         {

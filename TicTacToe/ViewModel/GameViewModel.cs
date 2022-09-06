@@ -24,11 +24,11 @@ namespace TicTacToe.ViewModel
             InitializeSquares();
             PlayEnabled = true;
         }
-       
+
         public ScoreViewModel ScoreVM { get; set; }
         public Player Player1 { get; set; }
         public Player Player2 { get; set; }
-       
+
         [ObservableProperty]
         private Player currentPlayer;
         public List<Square> SquaresPlayed { get; set; } = new List<Square>();
@@ -37,23 +37,23 @@ namespace TicTacToe.ViewModel
         private bool playEnabled;
 
         [ObservableProperty]
-        private Square square1;
+        private Square? square1;
         [ObservableProperty]
-        private Square square2;
+        private Square? square2;
         [ObservableProperty]
-        private Square square3;
+        private Square? square3;
         [ObservableProperty]
-        private Square square4;
+        private Square? square4;
         [ObservableProperty]
-        private Square square5;
+        private Square? square5;
         [ObservableProperty]
-        private Square square6;
+        private Square? square6;
         [ObservableProperty]
-        private Square square7;
+        private Square? square7;
         [ObservableProperty]
-        private Square square8;
+        private Square? square8;
         [ObservableProperty]
-        private Square square9;
+        private Square? square9;
 
         private void InitializeSquares()
         {
@@ -89,67 +89,61 @@ namespace TicTacToe.ViewModel
             SquaresPlayed.Add(square);
             square.Icon = CurrentPlayer.Icon;
 
-            CheckIfGameHasEnded();
+            if (GameHasEnded())
+            {
+                GameEnded(currentPlayer);
+            }
+            else
+            {
+                ChangePlayer();
+            }
+        }
 
-            //Change player
+        private void ChangePlayer()
+        {
             CurrentPlayer = CurrentPlayer == Player1 ? Player2 : Player1;
         }
 
-        private void CheckIfGameHasEnded()
+        private static bool SquareNotZeroAndEqualToOtherSquares(Square sq, params Square[] otherSquares)
         {
-            if (SquaresPlayed.Count == maxSquaresPossible)
-            {
-                GameEnded(new(0, "Draw"));
-                return;
-            }
+            if (sq.IdPlaced == 0) return false;
 
-            //Todo How to check this in a more clever way? 
+            return otherSquares.All(v => v.IdPlaced.Equals(sq.IdPlaced));
+        }
 
+        private bool GameHasEnded()
+        {
             //Horisontally
-            if (square1.IdPlaced != 0 && square1.IdPlaced == square2.IdPlaced && square1.IdPlaced == square3.IdPlaced)
+            if (SquareNotZeroAndEqualToOtherSquares(square1, square2, square3)
+                || SquareNotZeroAndEqualToOtherSquares(square4, square5, square6)
+                || SquareNotZeroAndEqualToOtherSquares(square7, square8, square9))
             {
-                GameEnded(currentPlayer);
-                return;
-            }
-            if (square4.IdPlaced != 0 && square4.IdPlaced == square5.IdPlaced && square4.IdPlaced == square6.IdPlaced)
-            {
-                GameEnded(currentPlayer);
-                return;
-            }
-            if (square7.IdPlaced != 0 && square7.IdPlaced == square8.IdPlaced && square7.IdPlaced == square9.IdPlaced)
-            {
-                GameEnded(currentPlayer);
-                return;
+                return true;
             }
 
             //Vertically
-            if (square1.IdPlaced != 0 && square1.IdPlaced == square4.IdPlaced && square1.IdPlaced == square7.IdPlaced)
+            if (SquareNotZeroAndEqualToOtherSquares(square1, square4, square7)
+                    || SquareNotZeroAndEqualToOtherSquares(square2, square5, square8)
+                    || SquareNotZeroAndEqualToOtherSquares(square3, square6, square9))
             {
-                GameEnded(currentPlayer);
-                return;
-            }
-            if (square2.IdPlaced != 0 && square2.IdPlaced == square5.IdPlaced && square2.IdPlaced == square8.IdPlaced)
-            {
-                GameEnded(currentPlayer);
-                return;
-            }
-            if (square3.IdPlaced != 0 && square3.IdPlaced == square6.IdPlaced && square3.IdPlaced == square9.IdPlaced)
-            {
-                GameEnded(currentPlayer);
-                return;
+                return true;
             }
 
             //Diagonally
-            if (square1.IdPlaced != 0 && square1.IdPlaced == square5.IdPlaced && square1.IdPlaced == square9.IdPlaced)
+            if (SquareNotZeroAndEqualToOtherSquares(square1, square5, square9)
+                       || SquareNotZeroAndEqualToOtherSquares(square3, square5, square7))
             {
-                GameEnded(currentPlayer);
-                return;
+                return true;
             }
-            if (square7.IdPlaced != 0 && square7.IdPlaced == square5.IdPlaced && square7.IdPlaced == square3.IdPlaced)
+
+            //Draw
+            if (SquaresPlayed.Count == maxSquaresPossible)
             {
-                GameEnded(currentPlayer);
-                return;
+                currentPlayer = new Player(0, "Draw");
+                return true;
             }
+
+            return false;
         }
 
         private void GameEnded(Player playerWhoWon)
