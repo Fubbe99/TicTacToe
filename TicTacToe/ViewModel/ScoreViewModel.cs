@@ -20,7 +20,6 @@ namespace TicTacToe.ViewModel
             Player2 = player2;
 
             Messenger.Register<ScoreUpdateMessage>(this);
-
         }
 
         public Player Player1 { get; set; }
@@ -32,7 +31,6 @@ namespace TicTacToe.ViewModel
         public void Receive(ScoreUpdateMessage message)
         {
             AddScore(message.Player);
-
         }
         private void AddScore(Player player)
         {
