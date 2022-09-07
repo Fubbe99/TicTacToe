@@ -19,7 +19,10 @@ namespace TicTacToe.ViewModel
         {
             Player1 = playerOne;
             Player2 = playerTwo;
-            currentPlayer = Player1;
+            PlayerToStart = Player1;
+            CurrentPlayer = Player1;
+
+            Messenger.Send(new NextTurnMessage { Player = CurrentPlayer });
 
             InitializeSquares();
             PlayEnabled = true;
@@ -28,6 +31,7 @@ namespace TicTacToe.ViewModel
         public ScoreViewModel ScoreVM { get; set; }
         public Player Player1 { get; set; }
         public Player Player2 { get; set; }
+        public Player PlayerToStart { get; set; }
 
         [ObservableProperty]
         private Player currentPlayer;
@@ -73,7 +77,8 @@ namespace TicTacToe.ViewModel
         [RelayCommand]
         public void StartNewGame()
         {
-            currentPlayer = Player1;
+            ChangeStartingPlayer();
+
             InitializeSquares();
             PlayEnabled = true;
         }
@@ -91,17 +96,25 @@ namespace TicTacToe.ViewModel
 
             if (GameHasEnded())
             {
-                GameEnded(currentPlayer);
+                GameEnded(CurrentPlayer);
             }
             else
             {
-                ChangePlayer();
+                ChangeCurrentPlayer();
             }
         }
 
-        private void ChangePlayer()
+        //Todo why not possible to pass in Player to method under? Check does not work then as equality fails. Out of scope?
+        private void ChangeCurrentPlayer()
         {
             CurrentPlayer = CurrentPlayer == Player1 ? Player2 : Player1;
+            Messenger.Send(new NextTurnMessage { Player = CurrentPlayer });
+        }
+        private void ChangeStartingPlayer()
+        {
+            PlayerToStart = PlayerToStart == Player1 ? Player2 : Player1;
+            CurrentPlayer = PlayerToStart;
+            Messenger.Send(new NextTurnMessage { Player = CurrentPlayer });
         }
 
         private static bool SquareNotZeroAndEqualToOtherSquares(Square sq, params Square[] otherSquares)
@@ -149,6 +162,7 @@ namespace TicTacToe.ViewModel
         private void GameEnded(Player playerWhoWon)
         {
             Messenger.Send(new ScoreUpdateMessage { Player = playerWhoWon });
+            Messenger.Send(new NextTurnMessage { Player = null });
 
             PlayEnabled = false;
         }

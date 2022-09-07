@@ -6,16 +6,20 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
+
             <DataTemplate DataType="{x:Type viewModel:GameViewModel}">
                 <view:GameView/>
             </DataTemplate>
             <DataTemplate DataType="{x:Type viewModel:ScoreViewModel}">
                 <view:ScoreView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:WhosTurnViewModel}">
+                <view:WhosTurnView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:EnterNameViewModel}">
+                <view:EnterNameView/>
+            </DataTemplate>
 
         </ResourceDictionary>
-        
-         
     </Application.Resources>
-    
 </Application>

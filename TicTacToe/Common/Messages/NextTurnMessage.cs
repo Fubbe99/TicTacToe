@@ -2,7 +2,7 @@
 
 namespace TicTacToe.Common.Messages
 {
-    public sealed record ScoreUpdateMessage
+    public sealed record NextTurnMessage
     {
         public Player? Player { get; set; }
     }

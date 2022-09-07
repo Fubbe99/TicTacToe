@@ -7,22 +7,32 @@
         xmlns:viewModel="clr-namespace:TicTacToe.ViewModel"
         mc:Ignorable="d"
         Background="DarkGray"
-        Title="Tic Tac Toe" Height="600" Width="800"
+        Title="Tic Tac Toe" MinHeight="600" MinWidth="850" Height="600" Width="850" 
         WindowStartupLocation="CenterScreen">
 
     <Window.DataContext>
         <viewModel:MainWindowViewModel/>
     </Window.DataContext>
-    <StackPanel Orientation="Horizontal">
+    <StackPanel Orientation="Vertical">
+        <UserControl Content="{Binding EnterNameVM}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    <StackPanel Orientation="Horizontal"
+                Visibility="{Binding GameVisibility}">
         <UserControl Content="{Binding GameVM}"/>
         <StackPanel Orientation="Vertical"
-                    Margin="0 50 0 0">
-            <Button Margin="20"
+                    Width="250"
+                    Margin="0 0 20 0">
+            <UserControl Content="{Binding WhoseTurnVM}"/>
+            <StackPanel Orientation="Vertical"
+                    Margin="20">
+                <Button Margin="20"
                 Height="50"
                 Content="New Game"
                 Command="{Binding GameVM.StartNewGameCommand}">
-            </Button>
-            <UserControl Content="{Binding ScoreVM}"/>
+                </Button>
+                <UserControl Content="{Binding ScoreVM}"
+                             Width="200"/>
+            </StackPanel>
+            </StackPanel>
         </StackPanel>
     </StackPanel>
 </Window>
