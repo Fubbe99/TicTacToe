@@ -1,5 +1,5 @@
 # TicTacToe
-Classical training exercise written in C#
+Classical training exercise written in C#, WPF, MVVM style.
 
 Made primarily for testing the new Attributes functionality of the CommunityToolkit.MVVM v8.0.
 (https://devblogs.microsoft.com/dotnet/announcing-the-dotnet-community-toolkit-800/)
